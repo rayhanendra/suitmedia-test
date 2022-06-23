@@ -32,6 +32,10 @@
 <script>
 import BaseInput from "./Base/BaseInput.vue";
 import BaseInputTextArea from "./Base/BaseInputTextArea.vue";
+import { RepositoryAPI } from "../api/repositoryApi";
+
+const comment = RepositoryAPI.get("comment");
+
 export default {
   name: "FormComment",
   components: { BaseInput, BaseInputTextArea },
@@ -81,6 +85,7 @@ export default {
 
       return result;
     },
+    addComment() {},
   },
 };
 </script>

@@ -1,18 +1,23 @@
 <template>
   <div>
     <div class="comment-section">
-      <div class="comment-section-content">
-        <div class="avatar"></div>
+      <div
+        v-for="(comment, index) in comments"
+        :key="index"
+        class="comment-section-content"
+      >
+        <div class="avatar">
+          <!-- <img class="avatar" :src="require(comment.avatar)" /> -->
+        </div>
         <div class="comment-section-flex">
           <div class="comment-section-content-main">
-            <h4>Neal Topham</h4>
-            <h5>08 February 2017 07:30</h5>
+            <h4>{{ comment.author }}</h4>
+            <h5>{{ comment.date | moment }}</h5>
             <p>
-              Mungkin ada fenomena paranormal yang tidak bisa dijelaskan. Lebih
-              baik nyala mati sendiri daripada tidak nyala sama sekali
+              {{ comment.message }}
             </p>
             <div class="point-container">
-              <h5>3 point</h5>
+              <h5>{{ comment.point }} point</h5>
               <div class="icon-container up">
                 <font-awesome-icon class="icon" :icon="['fas', 'arrow-up']" />
               </div>
@@ -22,48 +27,37 @@
             </div>
           </div>
 
-          <div class="comment-section-content">
-            <div class="avatar"></div>
-            <div class="comment-section-content-main">
-              <h4>Neal Topham</h4>
-              <h5>08 February 2017 07:30</h5>
-              <p>
-                Mungkin ada fenomena paranormal yang tidak bisa dijelaskan.
-                Lebih baik nyala mati sendiri daripada tidak nyala sama sekali
-              </p>
-              <div class="point-container">
-                <h5>3 point</h5>
-                <div class="icon-container up">
-                  <font-awesome-icon class="icon" :icon="['fas', 'arrow-up']" />
-                </div>
-                <div class="icon-container down">
-                  <font-awesome-icon
-                    class="icon"
-                    :icon="['fas', 'arrow-down']"
-                  />
+          <div v-if="comment.replies">
+            <div
+              v-for="(reply, index) in comment.replies"
+              :key="index"
+              class="comment-section-content"
+            >
+              <div class="avatar">
+                <!-- <img class="avatar" :src="require(reply.avatar)" /> -->
+              </div>
+              <div class="comment-section-content-main">
+                <h4>{{ reply.author }}</h4>
+                <h5>{{ reply.date | moment }}</h5>
+                <p>
+                  {{ reply.message }}
+                </p>
+                <div class="point-container">
+                  <h5>{{ reply.point }} point</h5>
+                  <div class="icon-container up">
+                    <font-awesome-icon
+                      class="icon"
+                      :icon="['fas', 'arrow-up']"
+                    />
+                  </div>
+                  <div class="icon-container down">
+                    <font-awesome-icon
+                      class="icon"
+                      :icon="['fas', 'arrow-down']"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="comment-section-content">
-        <div class="avatar"></div>
-        <div class="comment-section-content-main">
-          <h4>Neal Topham</h4>
-          <h5>08 February 2017 07:30</h5>
-          <p>
-            Mungkin ada fenomena paranormal yang tidak bisa dijelaskan. Lebih
-            baik nyala mati sendiri daripada tidak nyala sama sekali
-          </p>
-          <div class="point-container">
-            <div class="">3 point</div>
-            <div class="icon-container up">
-              <font-awesome-icon class="icon" :icon="['fas', 'arrow-up']" />
-            </div>
-            <div class="icon-container down">
-              <font-awesome-icon class="icon" :icon="['fas', 'arrow-down']" />
             </div>
           </div>
         </div>
@@ -73,7 +67,35 @@
 </template>
 
 <script>
+import { momentFormat } from "../config/MomentFormat";
+import { RepositoryAPI } from "../api/repositoryApi";
+
+const comment = RepositoryAPI.get("comment");
+
 export default {
   name: "ListComment",
+  data() {
+    return {
+      comments: [],
+    };
+  },
+  filters: {
+    moment: function (date) {
+      return momentFormat(date, "LLL");
+    },
+  },
+  mounted() {
+    this.getListComments();
+  },
+  methods: {
+    async getListComments() {
+      try {
+        const { data } = await comment.listComment();
+        this.comments = data;
+      } catch (error) {
+        return error;
+      }
+    },
+  },
 };
 </script>
