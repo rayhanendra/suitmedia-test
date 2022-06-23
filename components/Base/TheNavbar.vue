@@ -26,7 +26,9 @@
     </div>
 
     <div id="mySidenav" ref="mySidenav" class="sidenav">
-      <a class="closebtn" @click="closeNav">&times;</a>
+      <button class="closebtn" @click="closeNav">
+        <font-awesome-icon class="icon" :icon="['fas', 'xmark']" />
+      </button>
       <div class="search">
         <base-search />
       </div>

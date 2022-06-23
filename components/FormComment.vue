@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-column-container">
+  <div class="addcomment-section">
     <base-input
       v-model="form.name"
       placeholder="Nama"

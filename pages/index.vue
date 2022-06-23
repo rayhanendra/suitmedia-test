@@ -19,9 +19,7 @@
           <h3 class="separator">Komentar</h3>
           <base-comment />
           <h3 class="separator">Tambahkan Komentar</h3>
-          <div class="addcomment-section">
-            <form-comment />
-          </div>
+          <form-comment />
         </div>
         <div class="discussion-section">
           <h3 class="title">Diskusi 5 Teratas</h3>
