@@ -57,16 +57,15 @@ export default {
   &-wrapper {
     display: table-cell;
     vertical-align: middle;
-    padding: 20px;
+    padding: 8px;
   }
 
   &-container {
     min-width: 100px;
     max-width: 500px;
     margin: 0px auto;
-    padding: 20px 30px;
+    padding: 24px 24px;
     background-color: #fff;
-    border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     font-family: Helvetica, Arial, sans-serif;
@@ -107,6 +106,11 @@ export default {
         border-radius: 0px;
         color: white;
         background-color: #ff5f2d;
+      }
+
+      .icon {
+        width: 14px;
+        height: 14px;
       }
     }
   }

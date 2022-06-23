@@ -17,10 +17,10 @@
           </p>
           <div class="point-container">
             <h5>{{ comment.point }} point</h5>
-            <div class="icon-container up">
+            <div class="icon-container up" @click="upVote(comment.id)">
               <font-awesome-icon class="icon" :icon="['fas', 'arrow-up']" />
             </div>
-            <div class="icon-container down">
+            <div class="icon-container down" @click="downVote(comment.id)">
               <font-awesome-icon class="icon" :icon="['fas', 'arrow-down']" />
             </div>
           </div>
@@ -43,10 +43,10 @@
               </p>
               <div class="point-container">
                 <h5>{{ reply.point }} point</h5>
-                <div class="icon-container up">
+                <div class="icon-container up" @click="upVote(comment.id)">
                   <font-awesome-icon class="icon" :icon="['fas', 'arrow-up']" />
                 </div>
-                <div class="icon-container down">
+                <div class="icon-container down" @click="downVote(comment.id)">
                   <font-awesome-icon
                     class="icon"
                     :icon="['fas', 'arrow-down']"
@@ -83,6 +83,8 @@ export default {
     this.getListComments();
   },
   methods: {
+    upVote(id) {},
+    downVote(id) {},
     async getListComments() {
       try {
         const { data } = await comment.listComment();

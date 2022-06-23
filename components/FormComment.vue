@@ -6,6 +6,7 @@
       :name="'nama'"
       :valid="form.name && !formError.name"
       :errorText="formError.name"
+      style="max-width: 250px"
     />
     <base-input
       v-model="form.email"
@@ -14,6 +15,7 @@
       :type="'email'"
       :valid="form.email && !formError.email"
       :errorText="formError.email"
+      style="max-width: 250px"
     />
     <base-input-text-area
       v-model="form.comment"
