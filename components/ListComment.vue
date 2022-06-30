@@ -7,6 +7,7 @@
     >
       <div class="avatar">
         <!-- <img class="avatar" :src="require(comment.avatar)" /> -->
+        <img class="avatar" src="https://picsum.photos/id/1005/300/300" />
       </div>
       <div class="comment-section-flex">
         <div class="comment-section-content-main">
@@ -34,6 +35,7 @@
           >
             <div class="avatar">
               <!-- <img class="avatar" :src="require(reply.avatar)" /> -->
+              <img class="avatar" src="https://picsum.photos/id/1011/300/300" />
             </div>
             <div class="comment-section-content-main">
               <h4>{{ reply.author }}</h4>

@@ -59,6 +59,7 @@ textarea {
   min-height: 120px;
   resize: vertical;
   width: 100%;
+  max-width: 450px;
 }
 
 button {
@@ -392,10 +393,10 @@ button {
   &-flex {
     display: flex;
     flex-direction: column;
-    gap: 24px;
   }
 
   &-content {
+    margin-top: 24px;
     display: flex;
     gap: 16px;
 
@@ -413,7 +414,7 @@ button {
         display: flex;
         align-items: center;
         gap: 4px;
-        margin-top: 16px;
+        margin-top: 8px;
 
         .icon-container {
           background-color: @gray-light;
@@ -459,6 +460,10 @@ button {
         }
       }
     }
+  }
+
+  &-content:first-child {
+    margin-top: 0;
   }
 }
 
