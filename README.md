@@ -1,5 +1,8 @@
 # suitmedia-test
 
+Start json-server, Please use port 3001
+json-server --watch comments.json --port 3001
+
 ## Build Setup
 
 ```bash
